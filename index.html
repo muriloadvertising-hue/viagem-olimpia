@@ -74,14 +74,23 @@
   .stepper button:active{transform:scale(.92)}
   .stepper .days{font-size:26px;font-weight:800;min-width:34px;text-align:center}
   .calc-hint{font-size:12px;color:var(--muted);text-align:center;margin-bottom:12px}
+
+  /* Descritivo do preço */
+  .breakdown{background:#fff;border:1px solid #fde68a;border-radius:12px;padding:6px 12px;margin-bottom:12px}
+  .bd{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:8px 0;font-size:14px}
+  .bd + .bd{border-top:1px dashed #fde68a}
+  .bd .desc{color:#374151}
+  .bd .desc small{display:block;color:var(--muted);font-size:11.5px}
+  .bd b{font-weight:700;white-space:nowrap}
+  .bd.free b{color:var(--green)}
+
   .calc-result{display:flex;gap:10px}
   .calc-result .box{flex:1;background:#fff;border:1px solid #fde68a;border-radius:12px;padding:10px;text-align:center}
   .calc-result .box .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
   .calc-result .box .v{font-size:22px;font-weight:800;margin-top:3px}
   .calc-result .box.pp{background:#fff7ed}
   .calc-result .box.pp .v{color:var(--sun-dark)}
-  .calc.inc{text-align:center}
-  .calc.inc .incmsg{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:12px}
+  .calc.inc .incmsg{font-size:13.5px;font-weight:700;color:var(--navy);text-align:center;margin-bottom:10px}
 
   .btn{margin-top:4px;display:block;text-align:center;background:var(--sun);color:#fff;
     text-decoration:none;font-weight:700;padding:14px;border-radius:12px;font-size:16px}
@@ -108,7 +117,7 @@
   </header>
 
   <div class="intro">
-    <b>Como usar:</b> em cada opção, passe as fotos pro lado para ver o lugar. Embaixo tem uma <b>calculadorinha</b>: aperte o <b>+</b> ou o <b>−</b> para escolher quantos dias vocês querem ir ao parque, que o <b>preço total e o por pessoa já aparecem sozinhos</b>. Quando gostar de uma, é só apertar "Ver e reservar".
+    <b>Como usar:</b> em cada opção, passe as fotos pro lado para ver o lugar. Embaixo tem uma <b>calculadorinha</b>: aperte o <b>+</b> ou o <b>−</b> para escolher quantos dias vocês querem ir ao parque. Aí aparece o <b>descritivo de cada gasto</b> (hospedagem, parque, gasolina, comida) e o <b>total e o por pessoa</b>, tudo sozinho. Quando gostar de uma, é só apertar "Ver e reservar".
     <br><br>
     🎟️ <b>Ingresso do Thermas dos Laranjais em julho:</b> R$ 199 por adulto e R$ 99,50 a meia (para o de 15 e a de 8 anos). Para os 5 juntos dá <b>R$ 796 por dia</b>. No resort (última opção) o parque já vem incluso.
   </div>
@@ -155,8 +164,8 @@
             <li>Confirmar se a piscina é aquecida</li>
           </ul></div>
         </div>
-        <div class="calc" data-hosp="2225" data-extra="2400" data-parkday="796">
-          <div class="calc-title">💰 Calcule o preço da viagem</div>
+        <div class="calc" data-hosp="2225" data-gas="900" data-food="1500" data-parkday="796">
+          <div class="calc-title">💰 Monte o preço da viagem</div>
           <div class="stepper">
             <span class="lbl">Dias no parque:</span>
             <button class="minus" aria-label="menos">−</button>
@@ -164,9 +173,15 @@
             <button class="plus" aria-label="mais">+</button>
           </div>
           <div class="calc-hint">cada dia no parque = R$ 796 pros 5</div>
+          <div class="breakdown">
+            <div class="bd"><span class="desc">🏠 Hospedagem <small>6 noites, os 5</small></span><b class="bd-hosp"></b></div>
+            <div class="bd"><span class="desc">🎟️ Ingressos do parque <small><i class="bd-days">2</i> dia(s) × R$ 796</small></span><b class="bd-park"></b></div>
+            <div class="bd"><span class="desc">⛽ Combustível + pedágio <small>ida e volta de Santos</small></span><b class="bd-gas"></b></div>
+            <div class="bd"><span class="desc">🍽️ Comida <small>cozinhando no apê</small></span><b class="bd-food"></b></div>
+          </div>
           <div class="calc-result">
             <div class="box"><div class="l">Total da viagem</div><div class="v total">—</div></div>
-            <div class="box pp"><div class="l">Por pessoa</div><div class="v pp">—</div></div>
+            <div class="box pp"><div class="l">Por pessoa (÷5)</div><div class="v pp">—</div></div>
           </div>
         </div>
         <a class="btn" target="_blank" href="https://www.airbnb.com.br/rooms/38484869?checkin=2026-07-13&checkout=2026-07-19&adults=3&children=2">Ver e reservar →</a>
@@ -213,8 +228,8 @@
             <li>Ingresso do parque é à parte</li>
           </ul></div>
         </div>
-        <div class="calc" data-hosp="3420" data-extra="2400" data-parkday="796">
-          <div class="calc-title">💰 Calcule o preço da viagem</div>
+        <div class="calc" data-hosp="3420" data-gas="900" data-food="1500" data-parkday="796">
+          <div class="calc-title">💰 Monte o preço da viagem</div>
           <div class="stepper">
             <span class="lbl">Dias no parque:</span>
             <button class="minus" aria-label="menos">−</button>
@@ -222,9 +237,15 @@
             <button class="plus" aria-label="mais">+</button>
           </div>
           <div class="calc-hint">cada dia no parque = R$ 796 pros 5</div>
+          <div class="breakdown">
+            <div class="bd"><span class="desc">🏠 Hospedagem <small>6 noites, os 5</small></span><b class="bd-hosp"></b></div>
+            <div class="bd"><span class="desc">🎟️ Ingressos do parque <small><i class="bd-days">2</i> dia(s) × R$ 796</small></span><b class="bd-park"></b></div>
+            <div class="bd"><span class="desc">⛽ Combustível + pedágio <small>ida e volta de Santos</small></span><b class="bd-gas"></b></div>
+            <div class="bd"><span class="desc">🍽️ Comida <small>cozinhando no apê</small></span><b class="bd-food"></b></div>
+          </div>
           <div class="calc-result">
             <div class="box"><div class="l">Total da viagem</div><div class="v total">—</div></div>
-            <div class="box pp"><div class="l">Por pessoa</div><div class="v pp">—</div></div>
+            <div class="box pp"><div class="l">Por pessoa (÷5)</div><div class="v pp">—</div></div>
           </div>
         </div>
         <a class="btn" target="_blank" href="https://www.airbnb.com.br/rooms/1680095369101527471?checkin=2026-07-13&checkout=2026-07-19&adults=3&children=2">Ver e reservar →</a>
@@ -272,8 +293,8 @@
             <li>Padrão varia por unidade alugada</li>
           </ul></div>
         </div>
-        <div class="calc" data-hosp="3894" data-extra="2400" data-parkday="796">
-          <div class="calc-title">💰 Calcule o preço da viagem</div>
+        <div class="calc" data-hosp="3894" data-gas="900" data-food="1500" data-parkday="796">
+          <div class="calc-title">💰 Monte o preço da viagem</div>
           <div class="stepper">
             <span class="lbl">Dias no parque:</span>
             <button class="minus" aria-label="menos">−</button>
@@ -281,9 +302,15 @@
             <button class="plus" aria-label="mais">+</button>
           </div>
           <div class="calc-hint">cada dia no parque = R$ 796 pros 5</div>
+          <div class="breakdown">
+            <div class="bd"><span class="desc">🏠 Hospedagem <small>6 noites, os 5</small></span><b class="bd-hosp"></b></div>
+            <div class="bd"><span class="desc">🎟️ Ingressos do parque <small><i class="bd-days">2</i> dia(s) × R$ 796</small></span><b class="bd-park"></b></div>
+            <div class="bd"><span class="desc">⛽ Combustível + pedágio <small>ida e volta de Santos</small></span><b class="bd-gas"></b></div>
+            <div class="bd"><span class="desc">🍽️ Comida <small>cozinhando no apê</small></span><b class="bd-food"></b></div>
+          </div>
           <div class="calc-result">
             <div class="box"><div class="l">Total da viagem</div><div class="v total">—</div></div>
-            <div class="box pp"><div class="l">Por pessoa</div><div class="v pp">—</div></div>
+            <div class="box pp"><div class="l">Por pessoa (÷5)</div><div class="v pp">—</div></div>
           </div>
         </div>
         <a class="btn" target="_blank" href="https://www.booking.com/hotel/br/apartamento-colado-no-thermas-das-laranjais-no-olimpia-park-resort.pt-br.html?checkin=2026-07-13&checkout=2026-07-19&group_adults=3&group_children=2&age=15&age=8&no_rooms=1">Ver e reservar →</a>
@@ -332,11 +359,17 @@
           </ul></div>
         </div>
         <div class="calc inc">
-          <div class="calc-title">💰 Preço da viagem</div>
-          <div class="incmsg">🎟️ Parque incluso e ilimitado, vá quantos dias quiser</div>
+          <div class="calc-title">💰 Descritivo do preço</div>
+          <div class="incmsg">🎟️ Parque incluso e ilimitado, vão quantos dias quiserem</div>
+          <div class="breakdown">
+            <div class="bd"><span class="desc">🏠 Hospedagem <small>6 noites, os 5, com café da manhã</small></span><b>R$ 8.280</b></div>
+            <div class="bd free"><span class="desc">🎟️ Ingressos do parque <small>já incluso na diária</small></span><b>incluso</b></div>
+            <div class="bd"><span class="desc">⛽ Combustível + pedágio <small>ida e volta de Santos</small></span><b>R$ 900</b></div>
+            <div class="bd"><span class="desc">🍽️ Comida <small>almoço e janta (café já incluso)</small></span><b>R$ 1.000</b></div>
+          </div>
           <div class="calc-result">
             <div class="box"><div class="l">Total da viagem</div><div class="v">R$ 10.180</div></div>
-            <div class="box pp"><div class="l">Por pessoa</div><div class="v">R$ 2.036</div></div>
+            <div class="box pp"><div class="l">Por pessoa (÷5)</div><div class="v">R$ 2.036</div></div>
           </div>
         </div>
         <a class="btn" target="_blank" href="https://www.booking.com/hotel/br/thermasolampia-resort.pt-br.html?checkin=2026-07-13&checkout=2026-07-19&group_adults=3&group_children=2&age=15&age=8&no_rooms=1">Ver e reservar →</a>
@@ -346,10 +379,10 @@
   </div>
 
   <div class="legend">
-    <h3>O que está somado em cada "total"</h3>
+    <h3>De onde vêm os números</h3>
     <ul>
       <li><b>Hospedagem:</b> 6 noites (13 a 19/07), preço real do Booking/Airbnb para os 5.</li>
-      <li><b>Parque:</b> R$ 796 por dia escolhido (R$ 199 adulto, R$ 99,50 meia para os de 15 e 8). No resort já está incluso.</li>
+      <li><b>Ingressos do parque:</b> R$ 796 por dia (R$ 199 adulto, R$ 99,50 meia para os de 15 e 8). No resort já está incluso.</li>
       <li><b>Combustível + pedágio:</b> ~R$ 900 (ida e volta Santos &rarr; Olímpia).</li>
       <li><b>Comida:</b> ~R$ 1.500 cozinhando, ~R$ 1.000 no resort (tem café da manhã).</li>
       <li><b>Por pessoa</b> = total dividido por 5.</li>
@@ -375,25 +408,26 @@
     car.querySelector('.prev').addEventListener('click', function(){ track.scrollBy({left:-track.clientWidth,behavior:'smooth'}); });
   });
 
-  // Calculadora simples
+  // Calculadora com descritivo
   function money(n){ return 'R$ ' + Math.round(n).toLocaleString('pt-BR'); }
   document.querySelectorAll('.calc:not(.inc)').forEach(function(calc){
-    var hosp = +calc.dataset.hosp, extra = +calc.dataset.extra, parkday = +calc.dataset.parkday;
+    var hosp=+calc.dataset.hosp, gas=+calc.dataset.gas, food=+calc.dataset.food, parkday=+calc.dataset.parkday;
     var daysEl = calc.querySelector('.days');
-    var totalEl = calc.querySelector('.v.total');
-    var ppEl = calc.querySelector('.v.pp');
+    var q = function(s){ return calc.querySelector(s); };
     function render(){
       var days = +daysEl.textContent;
-      var total = hosp + extra + parkday*days;
-      totalEl.textContent = money(total);
-      ppEl.textContent = money(total/5);
+      var park = parkday*days;
+      var total = hosp + gas + food + park;
+      q('.bd-hosp').textContent = money(hosp);
+      q('.bd-park').textContent = money(park);
+      q('.bd-gas').textContent = money(gas);
+      q('.bd-food').textContent = money(food);
+      calc.querySelectorAll('.bd-days').forEach(function(e){ e.textContent = days; });
+      q('.v.total').textContent = money(total);
+      q('.v.pp').textContent = money(total/5);
     }
-    calc.querySelector('.plus').addEventListener('click', function(){
-      var d=+daysEl.textContent; if(d<6){ daysEl.textContent=d+1; render(); }
-    });
-    calc.querySelector('.minus').addEventListener('click', function(){
-      var d=+daysEl.textContent; if(d>0){ daysEl.textContent=d-1; render(); }
-    });
+    q('.plus').addEventListener('click', function(){ var d=+daysEl.textContent; if(d<6){ daysEl.textContent=d+1; render(); } });
+    q('.minus').addEventListener('click', function(){ var d=+daysEl.textContent; if(d>0){ daysEl.textContent=d-1; render(); } });
     render();
   });
 </script>
