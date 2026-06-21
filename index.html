@@ -64,6 +64,18 @@
   .pc h4{font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
   .pros h4{color:var(--green)} .cons h4{color:var(--red)}
 
+  /* O que os hóspedes falam */
+  .reviews{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .reviews .rh{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-bottom:9px}
+  .reviews .grp{font-size:13.5px}
+  .reviews .grp + .grp{margin-top:9px}
+  .reviews .grp > b{display:block;margin-bottom:3px}
+  .reviews .good > b{color:var(--green)} .reviews .bad > b{color:var(--red)}
+  .reviews ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+  .reviews li{position:relative;padding-left:15px;color:#374151}
+  .reviews li:before{content:"·";position:absolute;left:3px;font-weight:800}
+  .reviews li.warn{color:#b45309;font-weight:600}
+
   /* Calculadora simples */
   .calc{background:#fffbeb;border:2px solid #fde68a;border-radius:14px;padding:14px 14px 16px}
   .calc-title{font-size:13px;font-weight:700;color:var(--sun-dark);text-align:center;margin-bottom:10px;text-transform:uppercase;letter-spacing:.4px}
@@ -164,6 +176,19 @@
             <li>Confirmar se a piscina é aquecida</li>
           </ul></div>
         </div>
+        <div class="reviews">
+          <div class="rh">💬 O que os hóspedes falam · nota alta no Airbnb</div>
+          <div class="grp good"><b>👍 Elogios</b><ul>
+            <li>Anfitriões (Guilherme e Juliana) muito atenciosos, respondem rápido</li>
+            <li>Limpo, organizado e "igual às fotos"</li>
+            <li>Perto do parque, de restaurantes, mercado e farmácia</li>
+            <li>Tranquilo, bom para ir com crianças</li>
+          </ul></div>
+          <div class="grp bad"><b>👎 Reclamações</b><ul>
+            <li>Numa estadia, a TV e o micro-ondas não funcionaram</li>
+            <li>Nenhuma reclamação de lotação (é apê privativo)</li>
+          </ul></div>
+        </div>
         <div class="calc" data-hosp="2225" data-gas="900" data-food="1500" data-parkday="796">
           <div class="calc-title">💰 Monte o preço da viagem</div>
           <div class="stepper">
@@ -226,6 +251,16 @@
             <li>Anúncio novo (ainda com poucas avaliações)</li>
             <li>A 2 km do Thermas (vai de carro)</li>
             <li>Ingresso do parque é à parte</li>
+          </ul></div>
+        </div>
+        <div class="reviews">
+          <div class="rh">💬 O que os hóspedes falam · Airbnb (anúncio novo)</div>
+          <div class="grp good"><b>👍 Elogios</b><ul>
+            <li>"Experiência impecável": limpeza, conforto e atenção aos detalhes</li>
+            <li>Anfitrião atencioso e disponível</li>
+          </ul></div>
+          <div class="grp bad"><b>👎 Reclamações</b><ul>
+            <li>Ainda tem só 2 avaliações (amostra pequena pra ter certeza)</li>
           </ul></div>
         </div>
         <div class="calc" data-hosp="3420" data-gas="900" data-food="1500" data-parkday="796">
@@ -293,6 +328,20 @@
             <li>Ingresso do Thermas é à parte</li>
           </ul></div>
         </div>
+        <div class="reviews">
+          <div class="rh">💬 O que os hóspedes falam · Olímpia Park Resort</div>
+          <div class="grp good"><b>👍 Elogios</b><ul>
+            <li>Piscinas bem quentinhas, com animação para crianças e adultos</li>
+            <li>Colado no parque, funcionários prestativos</li>
+            <li>Ar-condicionado e estacionamento bons</li>
+          </ul></div>
+          <div class="grp bad"><b>👎 Reclamações</b><ul>
+            <li class="warn">"Os elevadores estão sempre lotados" (condomínio enorme, muita gente)</li>
+            <li>Comida dentro do hotel cara ("surreal de cara")</li>
+            <li>Insistência para vender cota imobiliária incomoda</li>
+            <li>Sem fogão e sofá-cama desconfortável</li>
+          </ul></div>
+        </div>
         <div class="calc" data-hosp="3894" data-gas="900" data-food="2000" data-parkday="796">
           <div class="calc-title">💰 Monte o preço da viagem</div>
           <div class="stepper">
@@ -356,6 +405,19 @@
             <li>Estoura o orçamento de R$ 8 mil</li>
             <li>Bem mais caro que as outras opções</li>
             <li>Só compensa indo ao parque quase todo dia</li>
+          </ul></div>
+        </div>
+        <div class="reviews">
+          <div class="rh">💬 O que os hóspedes falam · Thermas de Olímpia Resort</div>
+          <div class="grp good"><b>👍 Elogios</b><ul>
+            <li>Café da manhã maravilhoso, com muitas opções</li>
+            <li>Entrada exclusiva para o parque (grande diferencial)</li>
+            <li>Limpeza do quarto e funcionários atenciosos</li>
+          </ul></div>
+          <div class="grp bad"><b>👎 Reclamações</b><ul>
+            <li class="warn">Filas grandes no check-in e check-out (um hóspede ficou ~2h)</li>
+            <li>Alguns quartos com infiltração/mofo, precisa de reforma</li>
+            <li>Restaurante com aparência ruim</li>
           </ul></div>
         </div>
         <div class="calc inc">
