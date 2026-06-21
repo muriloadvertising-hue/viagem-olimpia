@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viagem em família - Olímpia/SP - Julho 2026</title>
+<style>
+  :root{
+    --sun:#f59e0b; --sun-dark:#d97706; --ink:#1f2937; --muted:#6b7280;
+    --line:#e5e7eb; --bg:#fafafa; --green:#16a34a; --red:#dc2626; --navy:#1e3a5f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:24px 16px 60px}
+  header{text-align:center;padding:14px 0 6px}
+  header .sun{font-size:34px}
+  h1{font-size:25px;font-weight:700;margin-top:4px}
+  .sub{color:var(--muted);font-size:15px;margin-top:6px}
+  .facts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 6px}
+  .chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:13.5px}
+  .chip b{color:var(--sun-dark)}
+  .intro{background:#fff7ed;border:1px solid #fed7aa;border-radius:14px;padding:14px 16px;margin:18px 0;font-size:14px;color:#7c2d12}
+  .grid{display:grid;gap:22px;margin-top:8px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    box-shadow:0 1px 3px rgba(0,0,0,.05);display:flex;flex-direction:column}
+  .card.reco{border:2px solid var(--sun);box-shadow:0 8px 26px rgba(245,158,11,.16)}
+
+  /* Carousel */
+  .carousel{position:relative;background:#000}
+  .track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none}
+  .track::-webkit-scrollbar{display:none}
+  .track img{flex:0 0 100%;width:100%;aspect-ratio:4/3;object-fit:cover;scroll-snap-align:center;display:block}
+  .nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border:none;
+    background:rgba(255,255,255,.92);border-radius:50%;font-size:24px;line-height:1;color:#111;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  .nav:active{transform:translateY(-50%) scale(.92)}
+  .nav.prev{left:10px} .nav.next{right:10px}
+  .dots{position:absolute;bottom:12px;left:0;right:0;display:flex;gap:6px;justify-content:center;pointer-events:none}
+  .dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.55)}
+  .dots i.on{background:#fff;width:18px;border-radius:4px;transition:.2s}
+  .tagtop{position:absolute;top:12px;left:12px;z-index:2;background:var(--sun);color:#fff;font-size:12px;
+    font-weight:700;padding:5px 11px;border-radius:999px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+  .tagtop.blue{background:var(--navy)}
+  .scoretop{position:absolute;top:12px;right:12px;z-index:2;background:#fff;color:var(--navy);font-size:13px;
+    font-weight:800;padding:5px 9px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+  .swipehint{position:absolute;bottom:12px;right:12px;z-index:2;background:rgba(0,0,0,.5);color:#fff;
+    font-size:11px;padding:3px 9px;border-radius:999px}
+
+  .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:13px;flex:1}
+  .name{font-size:19px;font-weight:700;line-height:1.3}
+  .meta{font-size:13px;color:var(--muted)}
+  .src{font-size:11.5px;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px}
+  .addr{background:#f9fafb;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13.5px}
+  .addr div{display:flex;gap:7px;align-items:flex-start}
+  .addr div + div{margin-top:5px}
+  .addr b{color:var(--ink)}
+  .pc{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:520px){.pc{grid-template-columns:1fr}}
+  .pc ul{list-style:none;font-size:13.5px;display:flex;flex-direction:column;gap:5px}
+  .pc li{position:relative;padding-left:20px}
+  .pros li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}
+  .cons li:before{content:"✕";position:absolute;left:0;color:var(--red);font-weight:800}
+  .pc h4{font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+  .pros h4{color:var(--green)} .cons h4{color:var(--red)}
+
+  /* Calculadora simples */
+  .calc{background:#fffbeb;border:2px solid #fde68a;border-radius:14px;padding:14px 14px 16px}
+  .calc-title{font-size:13px;font-weight:700;color:var(--sun-dark);text-align:center;margin-bottom:10px;text-transform:uppercase;letter-spacing:.4px}
+  .stepper{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:6px}
+  .stepper .lbl{font-size:15px}
+  .stepper button{width:46px;height:46px;border:none;border-radius:12px;background:var(--sun);color:#fff;
+    font-size:28px;font-weight:700;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .stepper button:active{transform:scale(.92)}
+  .stepper .days{font-size:26px;font-weight:800;min-width:34px;text-align:center}
+  .calc-hint{font-size:12px;color:var(--muted);text-align:center;margin-bottom:12px}
+  .calc-result{display:flex;gap:10px}
+  .calc-result .box{flex:1;background:#fff;border:1px solid #fde68a;border-radius:12px;padding:10px;text-align:center}
+  .calc-result .box .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
+  .calc-result .box .v{font-size:22px;font-weight:800;margin-top:3px}
+  .calc-result .box.pp{background:#fff7ed}
+  .calc-result .box.pp .v{color:var(--sun-dark)}
+  .calc.inc{text-align:center}
+  .calc.inc .incmsg{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:12px}
+
+  .btn{margin-top:4px;display:block;text-align:center;background:var(--sun);color:#fff;
+    text-decoration:none;font-weight:700;padding:14px;border-radius:12px;font-size:16px}
+  .btn:hover{background:var(--sun-dark)}
+  .legend{margin-top:30px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-size:13.5px;color:#374151}
+  .legend h3{font-size:15px;margin-bottom:8px}
+  .legend ul{margin:6px 0 0 18px;display:flex;flex-direction:column;gap:4px}
+  .note{font-size:12.5px;color:var(--muted)}
+  footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="sun">☀️</div>
+    <h1>Viagem em família &nbsp;·&nbsp; Olímpia, SP</h1>
+    <p class="sub">Fugindo do frio do inverno, num lugar quentinho de termas</p>
+    <div class="facts">
+      <span class="chip">📅 <b>13 a 19 de julho</b> de 2026 (6 noites)</span>
+      <span class="chip">👨‍👩‍👧‍👦 <b>5 pessoas</b> (27, mãe, pai, 15 e 8)</span>
+      <span class="chip">🚗 De carro, saindo de <b>Santos</b></span>
+    </div>
+  </header>
+
+  <div class="intro">
+    <b>Como usar:</b> em cada opção, passe as fotos pro lado para ver o lugar. Embaixo tem uma <b>calculadorinha</b>: aperte o <b>+</b> ou o <b>−</b> para escolher quantos dias vocês querem ir ao parque, que o <b>preço total e o por pessoa já aparecem sozinhos</b>. Quando gostar de uma, é só apertar "Ver e reservar".
+    <br><br>
+    🎟️ <b>Ingresso do Thermas dos Laranjais em julho:</b> R$ 199 por adulto e R$ 99,50 a meia (para o de 15 e a de 8 anos). Para os 5 juntos dá <b>R$ 796 por dia</b>. No resort (última opção) o parque já vem incluso.
+  </div>
+
+  <div class="grid">
+
+    <!-- 1 RECOMENDADA - Airbnb piscina -->
+    <div class="card reco">
+      <div class="carousel">
+        <span class="tagtop">⭐ Recomendada</span>
+        <span class="scoretop">Preferido</span>
+        <span class="swipehint">← arraste →</span>
+        <div class="track">
+          <img src="https://a0.muscache.com/im/pictures/2fbdea73-c4cb-4be1-be91-704a2d6b8a62.jpg?im_w=1200" alt="">
+          <img src="https://a0.muscache.com/im/pictures/8f35de06-84f7-495f-a8b4-ff92e116982b.jpg?im_w=1200" alt="">
+          <img src="https://a0.muscache.com/im/pictures/0d1fc4c3-fa0d-47e9-a25e-b916f11230b1.jpg?im_w=1200" alt="">
+          <img src="https://a0.muscache.com/im/pictures/f384da25-9d14-4af4-93f5-aefd3fbe1325.jpg?im_w=1200" alt="">
+          <img src="https://a0.muscache.com/im/pictures/6a72aa89-48e0-415d-9c50-33bd011ca52f.jpg?im_w=1200" alt="">
+          <img src="https://a0.muscache.com/im/pictures/1d989286-b880-4d3f-ba69-d49cb0af3e16.jpg?im_w=1200" alt="">
+        </div>
+        <button class="nav prev" aria-label="anterior">‹</button>
+        <button class="nav next" aria-label="próxima">›</button>
+        <div class="dots"></div>
+      </div>
+      <div class="body">
+        <div>
+          <div class="src">Airbnb · Preferido dos hóspedes</div>
+          <div class="name">Apartamento com piscina em Olímpia</div>
+          <div class="meta">Condomínio · 2 quartos · piscina · cozinha</div>
+        </div>
+        <div class="addr">
+          <div>📍 <span><b>Bairro Patrimônio de São João Batista</b>, Olímpia (endereço exato após a reserva)</span></div>
+          <div>🚗 <span>Cerca de <b>4 km do Thermas</b> (uns 10 min de carro)</span></div>
+        </div>
+        <div class="pc">
+          <div class="pros"><h4>Pontos positivos</h4><ul>
+            <li>Piscina no condomínio pra relaxar todo dia</li>
+            <li>"Preferido dos hóspedes" (muito bem avaliado)</li>
+            <li>2 quartos com cozinha, e a mais barata</li>
+          </ul></div>
+          <div class="cons"><h4>Pontos negativos</h4><ul>
+            <li>Ingresso do parque é à parte</li>
+            <li>Fica a ~4 km do Thermas (vai de carro)</li>
+            <li>Confirmar se a piscina é aquecida</li>
+          </ul></div>
+        </div>
+        <div class="calc" data-hosp="2225" data-extra="2400" data-parkday="796">
+          <div class="calc-title">💰 Calcule o preço da viagem</div>
+          <div class="stepper">
+            <span class="lbl">Dias no parque:</span>
+            <button class="minus" aria-label="menos">−</button>
+            <span class="days">2</span>
+            <button class="plus" aria-label="mais">+</button>
+          </div>
+          <div class="calc-hint">cada dia no parque = R$ 796 pros 5</div>
+          <div class="calc-result">
+            <div class="box"><div class="l">Total da viagem</div><div class="v total">—</div></div>
+            <div class="box pp"><div class="l">Por pessoa</div><div class="v pp">—</div></div>
+          </div>
+        </div>
+        <a class="btn" target="_blank" href="https://www.airbnb.com.br/rooms/38484869?checkin=2026-07-13&checkout=2026-07-19&adults=3&children=2">Ver e reservar →</a>
+      </div>
+    </div>
+
+    <!-- 2 Apto Moderno e Aconchegante -->
+    <div class="card">
+      <div class="carousel">
+        <span class="tagtop">✨ O mais bonito por dentro</span>
+        <span class="scoretop">Superhost</span>
+        <span class="swipehint">← arraste →</span>
+        <div class="track">
+          <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1680095369101527471/original/95ffe532-41f9-4dcd-be8b-e1383960954e.jpeg?im_w=1200" alt="">
+          <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1680095369101527471/original/668f7273-1d21-4cec-9e05-aa3e2fc82bd7.jpeg?im_w=1200" alt="">
+          <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1680095369101527471/original/2b729063-c096-4be5-be2f-a5685cce0342.jpeg?im_w=1200" alt="">
+          <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1680095369101527471/original/1c957f41-efaf-4495-8154-2a3ec8598144.jpeg?im_w=1200" alt="">
+          <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1680095369101527471/original/635cf448-a156-487e-a57d-94d815646cf1.jpeg?im_w=1200" alt="">
+          <img src="https://a0.muscache.com/im/pictures/hosting/Hosting-1680095369101527471/original/51abb1a4-d026-4c1a-a8ce-cba21b30934f.jpeg?im_w=1200" alt="">
+        </div>
+        <button class="nav prev" aria-label="anterior">‹</button>
+        <button class="nav next" aria-label="próxima">›</button>
+        <div class="dots"></div>
+      </div>
+      <div class="body">
+        <div>
+          <div class="src">Airbnb · Superhost</div>
+          <div class="name">Apto Moderno e Aconchegante</div>
+          <div class="meta">Apto inteiro · 2 quartos · 3 camas · 2 banheiros · decoração moderna</div>
+        </div>
+        <div class="addr">
+          <div>📍 <span><b>Olímpia</b> (endereço exato após a reserva)</span></div>
+          <div>🚗 <span>A <b>2 km do Thermas</b> (uns 5 min de carro)</span></div>
+        </div>
+        <div class="pc">
+          <div class="pros"><h4>Pontos positivos</h4><ul>
+            <li>O apê mais bonito e bem decorado da lista</li>
+            <li>Anfitrião Superhost (atendimento nota alta)</li>
+            <li>2 quartos, 2 banheiros, com cozinha</li>
+          </ul></div>
+          <div class="cons"><h4>Pontos negativos</h4><ul>
+            <li>Anúncio novo (ainda com poucas avaliações)</li>
+            <li>A 2 km do Thermas (vai de carro)</li>
+            <li>Ingresso do parque é à parte</li>
+          </ul></div>
+        </div>
+        <div class="calc" data-hosp="3420" data-extra="2400" data-parkday="796">
+          <div class="calc-title">💰 Calcule o preço da viagem</div>
+          <div class="stepper">
+            <span class="lbl">Dias no parque:</span>
+            <button class="minus" aria-label="menos">−</button>
+            <span class="days">2</span>
+            <button class="plus" aria-label="mais">+</button>
+          </div>
+          <div class="calc-hint">cada dia no parque = R$ 796 pros 5</div>
+          <div class="calc-result">
+            <div class="box"><div class="l">Total da viagem</div><div class="v total">—</div></div>
+            <div class="box pp"><div class="l">Por pessoa</div><div class="v pp">—</div></div>
+          </div>
+        </div>
+        <a class="btn" target="_blank" href="https://www.airbnb.com.br/rooms/1680095369101527471?checkin=2026-07-13&checkout=2026-07-19&adults=3&children=2">Ver e reservar →</a>
+      </div>
+    </div>
+
+    <!-- 3 Apto colado Olímpia Park Resort -->
+    <div class="card">
+      <div class="carousel">
+        <span class="tagtop">🏊 piscinas aquecidas</span>
+        <span class="scoretop">8,5</span>
+        <span class="swipehint">← arraste →</span>
+        <div class="track">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/535549426.jpg?k=f7a82e9e08034f42997d1ab853889dd517cfdac26ac3f37c95bccdc4856635aa&o=" alt="">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/535550126.jpg?k=8d10c13bac20244ae6cdaa5df986e520c53a49c29360afae25eeebde66073274&o=" alt="">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/535550193.jpg?k=75d8874abe45dafdd6eb54e3a27c523fe06154c81d1b731c90c64ed999dfa98a&o=" alt="">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/535549496.jpg?k=1059bf3e1ac797c3eb19f202d98d017a974165b0b0790da3bb14234e5e8ae9a8&o=" alt="">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/535551398.jpg?k=7cf55d405b22337afc35fb8aeb998ef7b6ec3b20ecd0819193963cb509d20b97&o=" alt="">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/535551327.jpg?k=77f23e3ecbbf7369b93f6b390938375b71e2cceb71cf77514647692e55ee1360&o=" alt="">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/535551617.jpg?k=412d1c485f0256867f1534112d9ac6ad719e886102fa8cf0b1e4d78b849e3814&o=" alt="">
+        </div>
+        <button class="nav prev" aria-label="anterior">‹</button>
+        <button class="nav next" aria-label="próxima">›</button>
+        <div class="dots"></div>
+      </div>
+      <div class="body">
+        <div>
+          <div class="src">Booking · 3.135 avaliações</div>
+          <div class="name">Apto colado no Thermas (Olímpia Park Resort)</div>
+          <div class="meta">Apto em condomínio resort · piscinas aquecidas · cozinha</div>
+        </div>
+        <div class="addr">
+          <div>📍 <span><b>Av. Aurora Forti Neves, 1030</b> (Olímpia Park Resort), Olímpia</span></div>
+          <div>🚶 <span>Em frente ao Thermas (uns <b>5 min a pé</b>)</span></div>
+        </div>
+        <div class="pc">
+          <div class="pros"><h4>Pontos positivos</h4><ul>
+            <li>Piscinas aquecidas do condomínio todo dia</li>
+            <li>Coladinho no parque, com cozinha</li>
+            <li>Estrutura grande e bonita de resort</li>
+          </ul></div>
+          <div class="cons"><h4>Pontos negativos</h4><ul>
+            <li>Mais caro que os apês acima</li>
+            <li>Ingresso do Thermas ainda é à parte</li>
+            <li>Padrão varia por unidade alugada</li>
+          </ul></div>
+        </div>
+        <div class="calc" data-hosp="3894" data-extra="2400" data-parkday="796">
+          <div class="calc-title">💰 Calcule o preço da viagem</div>
+          <div class="stepper">
+            <span class="lbl">Dias no parque:</span>
+            <button class="minus" aria-label="menos">−</button>
+            <span class="days">2</span>
+            <button class="plus" aria-label="mais">+</button>
+          </div>
+          <div class="calc-hint">cada dia no parque = R$ 796 pros 5</div>
+          <div class="calc-result">
+            <div class="box"><div class="l">Total da viagem</div><div class="v total">—</div></div>
+            <div class="box pp"><div class="l">Por pessoa</div><div class="v pp">—</div></div>
+          </div>
+        </div>
+        <a class="btn" target="_blank" href="https://www.booking.com/hotel/br/apartamento-colado-no-thermas-das-laranjais-no-olimpia-park-resort.pt-br.html?checkin=2026-07-13&checkout=2026-07-19&group_adults=3&group_children=2&age=15&age=8&no_rooms=1">Ver e reservar →</a>
+      </div>
+    </div>
+
+    <!-- 4 Thermas de Olímpia Resort -->
+    <div class="card">
+      <div class="carousel">
+        <span class="tagtop blue">🎟️ Parque incluso</span>
+        <span class="scoretop">8,0</span>
+        <span class="swipehint">← arraste →</span>
+        <div class="track">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/871076871.jpg?k=1b96e7360999a6331403daa61276f3964a06ab37cb107308df550595325e7991&o=" alt="">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/292348436.jpg?k=43185ad17bd145e4199786b766acf8aa71aba5008a3bd5b2a17b8339b2d5c5df&o=" alt="">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/773378117.jpg?k=d1e76e132e3ea2909293f07944381c41e48e3d5563ae843d7a013d27c92b8bde&o=" alt="">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/767627305.jpg?k=d4ea8ad070022c7138fc63e350610e02be5c91a926434edbf9c013127e5de965&o=" alt="">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/744708375.jpg?k=f64f12fc6ecf69ae6306189da4f5e50c912dfda330ece9d79f25c0a1c2557994&o=" alt="">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/741266445.jpg?k=befcd2923149aa5839220562c53c66575a53804ee6e4ea715d20ad9d4ef525ba&o=" alt="">
+          <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/141958388.jpg?k=b483660eca6d61e4519c767da8168c14cafcf0b340cf661c0140a821b2890257&o=" alt="">
+        </div>
+        <button class="nav prev" aria-label="anterior">‹</button>
+        <button class="nav next" aria-label="próxima">›</button>
+        <div class="dots"></div>
+      </div>
+      <div class="body">
+        <div>
+          <div class="src">Booking · 2.462 avaliações</div>
+          <div class="name">Thermas de Olímpia Resort</div>
+          <div class="meta">Resort colado no parque · entrada exclusiva · café incluso</div>
+        </div>
+        <div class="addr">
+          <div>📍 <span><b>Alameda das Maracás, 07</b>, Olímpia</span></div>
+          <div>🚪 <span>Colado no parque, com <b>entrada exclusiva direto no Thermas</b> (0 min)</span></div>
+        </div>
+        <div class="pc">
+          <div class="pros"><h4>Pontos positivos</h4><ul>
+            <li>Thermas dos Laranjais INCLUSO e ilimitado</li>
+            <li>Café da manhã e estrutura completa de resort</li>
+            <li>O mais cômodo: tudo no mesmo lugar</li>
+          </ul></div>
+          <div class="cons"><h4>Pontos negativos</h4><ul>
+            <li>Estoura o orçamento de R$ 8 mil</li>
+            <li>Bem mais caro que as outras opções</li>
+            <li>Só compensa indo ao parque quase todo dia</li>
+          </ul></div>
+        </div>
+        <div class="calc inc">
+          <div class="calc-title">💰 Preço da viagem</div>
+          <div class="incmsg">🎟️ Parque incluso e ilimitado, vá quantos dias quiser</div>
+          <div class="calc-result">
+            <div class="box"><div class="l">Total da viagem</div><div class="v">R$ 10.180</div></div>
+            <div class="box pp"><div class="l">Por pessoa</div><div class="v">R$ 2.036</div></div>
+          </div>
+        </div>
+        <a class="btn" target="_blank" href="https://www.booking.com/hotel/br/thermasolampia-resort.pt-br.html?checkin=2026-07-13&checkout=2026-07-19&group_adults=3&group_children=2&age=15&age=8&no_rooms=1">Ver e reservar →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="legend">
+    <h3>O que está somado em cada "total"</h3>
+    <ul>
+      <li><b>Hospedagem:</b> 6 noites (13 a 19/07), preço real do Booking/Airbnb para os 5.</li>
+      <li><b>Parque:</b> R$ 796 por dia escolhido (R$ 199 adulto, R$ 99,50 meia para os de 15 e 8). No resort já está incluso.</li>
+      <li><b>Combustível + pedágio:</b> ~R$ 900 (ida e volta Santos &rarr; Olímpia).</li>
+      <li><b>Comida:</b> ~R$ 1.500 cozinhando, ~R$ 1.000 no resort (tem café da manhã).</li>
+      <li><b>Por pessoa</b> = total dividido por 5.</li>
+    </ul>
+    <p class="note" style="margin-top:10px">Preços consultados em 20/06/2026 para as datas 13 a 19/07. Podem variar até a reserva. Julho é alta temporada (férias), então reservar logo garante preço e vaga.</p>
+  </div>
+
+  <footer>Feito com carinho para a família decidir 💛 &nbsp;·&nbsp; Olímpia/SP &nbsp;·&nbsp; Julho 2026</footer>
+
+</div>
+
+<script>
+  // Carrossel de fotos
+  document.querySelectorAll('.carousel').forEach(function(car){
+    var track = car.querySelector('.track');
+    var imgs = track.querySelectorAll('img');
+    var dotsBox = car.querySelector('.dots');
+    imgs.forEach(function(_,i){ var d=document.createElement('i'); if(i===0)d.className='on'; dotsBox.appendChild(d); });
+    var dots = dotsBox.querySelectorAll('i');
+    function update(){ var c=Math.round(track.scrollLeft/track.clientWidth); dots.forEach(function(d,i){ d.className=i===c?'on':''; }); }
+    track.addEventListener('scroll', function(){ window.requestAnimationFrame(update); });
+    car.querySelector('.next').addEventListener('click', function(){ track.scrollBy({left:track.clientWidth,behavior:'smooth'}); });
+    car.querySelector('.prev').addEventListener('click', function(){ track.scrollBy({left:-track.clientWidth,behavior:'smooth'}); });
+  });
+
+  // Calculadora simples
+  function money(n){ return 'R$ ' + Math.round(n).toLocaleString('pt-BR'); }
+  document.querySelectorAll('.calc:not(.inc)').forEach(function(calc){
+    var hosp = +calc.dataset.hosp, extra = +calc.dataset.extra, parkday = +calc.dataset.parkday;
+    var daysEl = calc.querySelector('.days');
+    var totalEl = calc.querySelector('.v.total');
+    var ppEl = calc.querySelector('.v.pp');
+    function render(){
+      var days = +daysEl.textContent;
+      var total = hosp + extra + parkday*days;
+      totalEl.textContent = money(total);
+      ppEl.textContent = money(total/5);
+    }
+    calc.querySelector('.plus').addEventListener('click', function(){
+      var d=+daysEl.textContent; if(d<6){ daysEl.textContent=d+1; render(); }
+    });
+    calc.querySelector('.minus').addEventListener('click', function(){
+      var d=+daysEl.textContent; if(d>0){ daysEl.textContent=d-1; render(); }
+    });
+    render();
+  });
+</script>
+</body>
+</html>
